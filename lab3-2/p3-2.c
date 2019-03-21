@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 
+// 큐 구조체 선언
 typedef struct Queue {
 	int capacity;
 	int startIndex;
@@ -9,13 +10,14 @@ typedef struct Queue {
 	int* array;
 } Queue;
 
-Queue* createQueue(int capacity);
-void enqueue(Queue* queue, int number);
-int dequeue(Queue* queue);
-int end(Queue* queue);
-int isEmpty(Queue* queue);
-int isFull(Queue* queue);
+// 큐 관련 함수들의 프로토타입 선언
+Queue* createQueue(int capacity); // capacity 크기의 배열을 가진 Queue 구조체를 생성해 반환한다.
+void enqueue(Queue* queue, int number); // queue의 뒤로 number를 추가한다.
+int dequeue(Queue* queue); // queue의 앞 요소를 제거한 다음 그 값을 반환한다.
+int isEmpty(Queue* queue); // queue가 비어있는지의 여부를 반환한다.
+int isFull(Queue* queue); // queue가 가득 찼는지의 여부를 반환한다.
 
+// 큐 관련 함수들의 정의
 Queue* createQueue(int capacity) {
 	Queue* queue;
 	queue = malloc(sizeof(queue));
@@ -29,7 +31,7 @@ Queue* createQueue(int capacity) {
 }
 void enqueue(Queue* queue, int number) {
 	if (isFull(queue)) {
-		printf("Full");
+		printf("Full\n");
 		return;
 	}
 	queue->endIndex += 1;
@@ -37,7 +39,7 @@ void enqueue(Queue* queue, int number) {
 }
 int dequeue(Queue* queue) {
 	if (isEmpty(queue)) {
-		printf("Empty");
+		printf("Empty\n");
 		return -1;
 	}
 	int prevStart = queue->array[queue->startIndex];
@@ -52,6 +54,7 @@ int isFull(Queue* queue) {
 	return (queue->startIndex >= queue->capacity) ? 1 : 0;
 }
 
+// 테스트 케이스를 실행하는 함수
 void runTestCase() {
 	Queue* queue = createQueue(100);
 	enqueue(queue, 1);
@@ -63,6 +66,7 @@ void runTestCase() {
 	dequeue(queue);
 }
 
+// main 함수
 int main(int argc, char *argv[]) {
 	Queue* queue = createQueue(100);
 	
@@ -73,7 +77,7 @@ int main(int argc, char *argv[]) {
 	fscanf(fpInput, "%d", &numberOfLines);
 	
 	for (int i = 0; i < numberOfLines; i++) {
-		char command[5];
+		char command[4]; // NULL이 들어갈 고려해 크기를 한 칸 더 늘려줘야 한다.
 		int number;
 		
 		fscanf(fpInput, "%s %d", command, &number);

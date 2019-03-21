@@ -2,19 +2,21 @@
 #include <stdlib.h>
 #include <string.h>
 
+// 스택 구조체 선언
 typedef struct Stack {
 	int capacity;
 	int topIndex;
 	int* array;
 } Stack;
 
-Stack* createStack(int capacity);
-void push(Stack* stack, int number);
-int pop(Stack* stack);
-int top(Stack* stack);
-int isEmpty(Stack* stack);
-int isFull(Stack* stack);
+// 스택 관련 함수들의 프로토타입 선언
+Stack* createStack(int capacity); // capacity 크기의 배열을 가진 Stack 구조체를 생성해 반환한다.
+void push(Stack* stack, int number); // stack의 위로 number를 푸시한다.
+int pop(Stack* stack); // stack의 윗 요소를 팝한 다음 그 값을 반환한다.
+int isEmpty(Stack* stack); // stack이 비어있는지의 여부를 반환한다.
+int isFull(Stack* stack); // stack이 가득 찼는지의 여부를 반환한다.
 
+// 스택 관련 함수들의 정의
 Stack* createStack(int capacity) {
 	Stack* stack;
 	stack = malloc(sizeof(Stack));
@@ -43,12 +45,6 @@ int pop(Stack* stack) {
 	printf("%d\n", prevTop);
 	return prevTop;
 }
-int top(Stack* stack) {
-	if (isEmpty(stack)) {
-		return -1;
-	}
-	return stack->array[stack->topIndex];
-}
 int isEmpty(Stack* stack) {
 	return (stack->topIndex == -1) ? 1 : 0;
 }
@@ -56,6 +52,7 @@ int isFull(Stack* stack) {
 	return (stack->topIndex == (stack->capacity - 1)) ? 1 : 0;
 }
 
+// 테스트 케이스를 실행하는 함수
 void runTestCase() {
 	Stack* stack = createStack(100);
 	push(stack, 1);
@@ -67,6 +64,7 @@ void runTestCase() {
 	pop(stack);
 }
 
+// main 함수
 int main(int argc, char *argv[]) {
 	Stack* stack = createStack(100);
 	
@@ -77,7 +75,7 @@ int main(int argc, char *argv[]) {
 	fscanf(fpInput, "%d", &numberOfLines);
 	
 	for (int i = 0; i < numberOfLines; i++) {
-		char command[5];
+		char command[5]; // NULL이 들어갈 고려해 크기를 한 칸 더 늘려줘야 한다.
 		int number;
 		
 		fscanf(fpInput, "%s %d", command, &number);

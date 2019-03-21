@@ -17,18 +17,18 @@ struct Node {
 };
 
 // 리스트 관련 함수들의 프로토타입 선언
-List* createList();
-void insertStudent(List* list, Student student);
-void deleteStudent(List* list, int studentID);
-Node* findStudent(List* list, int studentID);
-void printStudentList(List* list);
+List* createList(); // List 구조체를 생성해 반환한다.
+void insertStudent(List* list, Student student); // list에 student를 삽입한다.
+void deleteStudent(List* list, int studentID); // list에서 id가 studentID와 같은 Student 구조체를 찾아 제거한다.
+Node* findStudent(List* list, int studentID); // list에서 id가 studentID와 같은 Student 구조체를 찾아 반환한다.
+void printStudentList(List* list); // list에 있는 학생들의 정보를 줄마다 출력한다.
 
 // 리스트 관련 내부 함수들의 프로토타입 선언
-void _deleteNode(List* list, Node* node);
-Node* _findStudentNode(List* list, int studentID);
-Node* _findStudentNodeToInsertAfter(List* list, int studentID);
-Node* _findPreviousNode(List* list, Node* node);
-void _printInlineStudentList(List* list);
+void _deleteNode(List* list, Node* node); // list에서 node를 제거한다.
+Node* _findStudentNode(List* list, int studentID); // list에서 id가 studentID와 같은 노드를 찾아 반환한다.
+Node* _findStudentNodeToInsertAfter(List* list, int studentID); // list에서 id가 studentID보다 큰 노드를 찾아 반환한다.
+Node* _findPreviousNode(List* list, Node* node); // list에서 node를 다음 노드로 가진 노드를 처음부터 찾아 반환한다.
+void _printInlineStudentList(List* list); // list에 있는 학생들의 정보를 한 줄로 출력한다.
 
 // 리스트 관련 함수들의 정의
 List* createList() {
