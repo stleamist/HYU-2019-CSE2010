@@ -5,7 +5,7 @@
 typedef struct Stack {
 	int capacity;
 	int topIndex;
-	int *array;
+	int* array;
 } Stack;
 
 Stack* createStack(int capacity);
@@ -70,9 +70,8 @@ void runTestCase() {
 int main(int argc, char *argv[]) {
 	Stack* stack = createStack(100);
 	
-	FILE *fpInput, *fpOutput;
-	fpInput = fopen("input.txt", "r");
-	fpOutput = freopen("output.txt", "w", stdout); // stdout 스트림 출력을 파일 스트림으로 리다이렉트한다.
+	FILE* fpInput = fopen("input.txt", "r");
+	FILE* fpOutput = freopen("output.txt", "w", stdout); // stdout 스트림 출력을 파일 스트림으로 리다이렉트한다.
 	
 	int numberOfLines;
 	fscanf(fpInput, "%d", &numberOfLines);

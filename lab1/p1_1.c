@@ -19,9 +19,9 @@ void selection_sort(int list[], int n) {
 }
 
 int main() {
-	FILE *fp;
+	FILE* fp;
 	int size;
-	int *arr;
+	int* arr;
 	
 	char inputFilename[32];
 	char outputFilename[32];

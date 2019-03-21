@@ -9,11 +9,11 @@ typedef struct Student Student;
 // 리스트 관련 구조체들의 선언
 struct Student {
 	int id;
-	char *name;
+	char* name;
 };
 struct Node {
 	Student student;
-	Node *next;
+	Node* next;
 };
 
 // 리스트 관련 함수들의 프로토타입 선언
@@ -132,7 +132,7 @@ Node* _findPreviousNode(List* list, Node* node) {
 	
 	return prevNode;
 }
-void _printInlineStudentList(List *list) {
+void _printInlineStudentList(List* list) {
 	Node* node = list->next;
 	
 	printf("Current List > ");
@@ -150,7 +150,7 @@ void _printInlineStudentList(List *list) {
 
 // 테스트 케이스를 실행하는 함수
 void runTestCase() {
-	List *list = createList();
+	List* list = createList();
 	
 	Student s1 = {.id = 201411, .name = "Brian Lee"};
 	Student s2 = {.id = 201402, .name = "Susan Kim"};
@@ -172,11 +172,10 @@ void runTestCase() {
 
 // main 함수
 int main(int argc, char *argv[]) {
-	List *list = createList();
+	List* list = createList();
 	
-	FILE *fpInput, *fpOutput;
-	fpInput = fopen("input.txt", "r");
-	fpOutput = freopen("output.txt", "w", stdout); // stdout 스트림 출력을 파일 스트림으로 리다이렉트한다.
+	FILE* fpInput = fopen("input.txt", "r");
+	FILE* fpOutput = freopen("output.txt", "w", stdout); // stdout 스트림 출력을 파일 스트림으로 리다이렉트한다.
 	
 	while(!feof(fpInput)) {
 		char buffer[100];

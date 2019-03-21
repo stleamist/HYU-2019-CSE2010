@@ -2,15 +2,15 @@
 # include <stdlib.h>
 
 typedef struct {
-	char *name;
+	char* name;
 	int studentID;
-	char *major;
+	char* major;
 } studentT;
 
 int main() {
-	FILE *fp;
+	FILE* fp;
 	int size;
-	studentT *arr;
+	studentT* arr;
 	
 	char inputFilename[64];
 	char outputFilename[64];
