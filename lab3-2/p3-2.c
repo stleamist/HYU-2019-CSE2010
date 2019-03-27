@@ -2,17 +2,20 @@
 #include <stdlib.h>
 #include <string.h>
 
+// 큐 구조체 요소의 자료형 선언
+typedef int Element;
+
 // 큐 구조체 선언
 typedef struct Queue {
 	int capacity;
 	int startIndex;
 	int endIndex;
-	int* array;
+	Element* array;
 } Queue;
 
 // 큐 관련 함수들의 프로토타입 선언
 Queue* createQueue(int capacity); // capacity 크기의 배열을 가진 Queue 구조체를 생성해 반환한다.
-void enqueue(Queue* queue, int number); // queue의 뒤로 number를 추가한다.
+int enqueue(Queue* queue, Element item); // queue의 뒤로 item을 추가한다.
 int dequeue(Queue* queue); // queue의 앞 요소를 제거한 다음 그 값을 반환한다.
 int isEmpty(Queue* queue); // queue가 비어있는지의 여부를 반환한다.
 int isFull(Queue* queue); // queue가 가득 찼는지의 여부를 반환한다.
@@ -25,27 +28,28 @@ Queue* createQueue(int capacity) {
 	queue->capacity = capacity;
 	queue->startIndex = 0;
 	queue->endIndex = -1;
-	queue->array = malloc(sizeof(int) * capacity);
+	queue->array = malloc(sizeof(Element) * capacity);
 	
 	return queue;
 }
-void enqueue(Queue* queue, int number) {
+int enqueue(Queue* queue, Element item) {
 	if (isFull(queue)) {
 		printf("Full\n");
-		return;
+		return -1;
 	}
 	queue->endIndex += 1;
-	queue->array[queue->endIndex] = number;
+	queue->array[queue->endIndex] = item;
+	return 0;
 }
 int dequeue(Queue* queue) {
 	if (isEmpty(queue)) {
 		printf("Empty\n");
 		return -1;
 	}
-	int prevStart = queue->array[queue->startIndex];
+	Element prevStart = queue->array[queue->startIndex];
 	queue->startIndex += 1;
 	printf("%d\n", prevStart);
-	return prevStart;
+	return 0;
 }
 int isEmpty(Queue* queue) {
 	return (queue->startIndex > queue->endIndex) ? 1 : 0;

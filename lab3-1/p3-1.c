@@ -2,17 +2,21 @@
 #include <stdlib.h>
 #include <string.h>
 
+// 스택 구조체 요소의 자료형 선언
+typedef int Element;
+
 // 스택 구조체 선언
 typedef struct Stack {
 	int capacity;
 	int topIndex;
-	int* array;
+	Element* array;
 } Stack;
 
 // 스택 관련 함수들의 프로토타입 선언
 Stack* createStack(int capacity); // capacity 크기의 배열을 가진 Stack 구조체를 생성해 반환한다.
-void push(Stack* stack, int number); // stack의 위로 number를 푸시한다.
-int pop(Stack* stack); // stack의 윗 요소를 팝한 다음 그 값을 반환한다.
+int push(Stack* stack, Element item); // stack의 위로 item을 푸시한다.
+int pop(Stack* stack); // stack의 윗 요소를 팝한다.
+Element top(Stack* stack); // stack의 윗 요소를 반환한다.
 int isEmpty(Stack* stack); // stack이 비어있는지의 여부를 반환한다.
 int isFull(Stack* stack); // stack이 가득 찼는지의 여부를 반환한다.
 
@@ -23,27 +27,33 @@ Stack* createStack(int capacity) {
 	
 	stack->capacity = capacity;
 	stack->topIndex = -1;
-	stack->array = malloc(sizeof(int) * capacity);
+	stack->array = malloc(sizeof(Element) * capacity);
 	
 	return stack;
 }
-void push(Stack* stack, int number) {
+int push(Stack* stack, Element item) {
 	if (isFull(stack)) {
 		printf("Full\n");
-		return;
+		return -1;
 	}
 	stack->topIndex += 1;
-	stack->array[stack->topIndex] = number;
+	stack->array[stack->topIndex] = item;
+	return 0;
 }
 int pop(Stack* stack) {
 	if (isEmpty(stack)) {
 		printf("Empty\n");
 		return -1;
 	}
-	int prevTop = stack->array[stack->topIndex];
+	Element prevTop = top(stack);
 	stack->topIndex -= 1;
 	printf("%d\n", prevTop);
-	return prevTop;
+	return 0;
+}
+Element top(Stack* stack) {
+	if (!isEmpty(stack)) {
+		return stack->array[stack->topIndex];
+	}
 }
 int isEmpty(Stack* stack) {
 	return (stack->topIndex == -1) ? 1 : 0;
