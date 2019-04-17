@@ -1,8 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define MAX(a,b) (((a)>(b))?(a):(b))
+#define MAX(a,b) (((a)>(b))?(a):(b)) // 두 인자 중 최댓값을 반환하는 매크로 함수
 
+// 트리 노드 구조체 선언
 typedef struct Node Node;
 struct Node {
 	Node* left;
@@ -11,16 +12,16 @@ struct Node {
 	int value;
 };
 
-Node* createNode(int value);
-Node* insertNode(Node* node, int value);
-Node* rotateLeft(Node* prevRoot);
-Node* rotateRight(Node* prevRoot);
-Node* rotateLeftDouble(Node* prevRoot);
-Node* rotateRightDouble(Node* prevRoot);
-int height(Node* node);
-
-void printInorder(Node* node);
-void _printInorderElements(Node* node);
+// AVL 트리 관련 함수들의 프로토타입 선언
+Node* createNode(int value); // value를 가진 노드를 생성해 반환한다.
+Node* insertNode(Node* node, int value); // node 트리에 value를 가진 노드를 삽입해 반환한다.
+Node* rotateLeft(Node* prevRoot); // node의 서브트리를 왼쪽으로 회전시키고 새로운 루트 노드를 반환한다.
+Node* rotateRight(Node* prevRoot); // node의 서브트리를 오른쪽으로 회전시키고 새로운 루트 노드를 반환한다.
+Node* rotateLeftDouble(Node* prevRoot); // node의 서브트리를 왼쪽 및 오른쪽으로 회전시키고 새로운 루트 노드를 반환한다.
+Node* rotateRightDouble(Node* prevRoot); // node의 서브트리를 오른쪽 및 왼쪽으로 회전시키고 새로운 루트 노드를 반환한다.
+int height(Node* node); // node 트리의 높이를 반환한다.
+void printInorder(Node* node); // node 트리의 노드 값을 중위 순회하여 개행 문자와 함께 출력한다.
+void _printInorderElements(Node* node); // node 트리의 노드 값을 중위 순회하여 출력한다.
 
 Node* createNode(int value) {
 	Node* node = malloc(sizeof(Node));
@@ -111,7 +112,7 @@ void _printInorderElements(Node* node) {
 	}
 }
 
-
+// 테스트 케이스를 실행하는 함수
 void runTestCase() {
 	Node* root;
 	// AVL 정렬 중 최상단 루트 노드가 변경될 가능성이 있기 때문에 매번 insertNode()의 결과값을 root에 대입해야 한다.
@@ -129,6 +130,7 @@ void runTestCase() {
 	root = insertNode(root, 25); printInorder(root);
 }
 
+// main 함수
 int main(int argc, char *argv[]) {
 	Node* root;
 		
@@ -140,7 +142,7 @@ int main(int argc, char *argv[]) {
 		
 		fscanf(fpInput, "%d", &value);
 		
-		root = insertNode(root, value);
+		root = insertNode(root, value); // AVL 정렬 중 최상단 루트 노드가 변경될 가능성이 있기 때문에 매번 insertNode()의 결과값을 root에 대입해야 한다.
 		printInorder(root);
 	}
 	
