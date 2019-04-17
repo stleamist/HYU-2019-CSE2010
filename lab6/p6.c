@@ -132,7 +132,7 @@ void runTestCase() {
 
 // main 함수
 int main(int argc, char *argv[]) {
-	Node* root;
+	Node* root = NULL;
 		
 	FILE* fpInput = fopen("input.txt", "r");
 	FILE* fpOutput = freopen("output.txt", "w", stdout); // stdout 스트림 출력을 파일 스트림으로 리다이렉트한다.
