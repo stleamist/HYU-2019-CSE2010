@@ -100,7 +100,7 @@ Maze* _shuffleMaze(Maze* maze) {
 		int cellNumber = rand() % (size * size) + 1;
 		Wall wallDirection = rand() % 2; // 0: D_RIGHT, 1: D_BOTTOM
 		
-		
+		// 임의로 선택된 벽이 테두리일 경우 처음으로 건너뛴다.
 		if (maze->walls[cellNumber - 1][wallDirection] == W_BOUNDARY) {
 			continue;
 		}
@@ -114,7 +114,7 @@ Maze* _shuffleMaze(Maze* maze) {
 			unionRoots(maze->cells, root1, root2);
 			maze->walls[cellNumber - 1][wallDirection] = W_OPEN;
 		}
-	} while (getNumberOfSubsets(maze->cells, size * size) > 1);
+	} while (getNumberOfSubsets(maze->cells, size * size) > 1); // 부분집합의 개수가 1개가 될 때까지 반복한다.
 	
 	return maze;
 }
